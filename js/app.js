@@ -79,17 +79,17 @@ const buildNav = () => {
     navAnchor.dataset.section = section.id;
     navAnchor.appendChild(navText);
 
-    // Scroll to anchor ID using scrollTO event
-    navAnchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      document.querySelector(this.getAttribute("href")).scrollIntoView({
-        behavior: "smooth",
-      });
-    });
     navLi.appendChild(navAnchor);
     navContainer.appendChild(navLi);
   }
   navUl.appendChild(navContainer);
+  // listen to clicks on the anchors inside nav ul
+  navUl.addEventListener("click", (e) => {
+    e.preventDefault();
+    document.querySelector(e.target.getAttribute("href")).scrollIntoView({
+      behavior: "smooth",
+    });
+  });
 };
 
 // Add class 'active' to section when near top of viewport
